@@ -6,21 +6,25 @@ import {
   Component,
   OnInit,
   ChangeDetectorRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Track } from 'ngx-audio-player';
 
 @Component({
   selector: 'app-prayer',
   templateUrl: './prayer.page.html',
   styleUrls: ['./prayer.page.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PrayerPage implements OnInit {
   showToolbar = false;
   isAudioPlaying: boolean = false;
   status: boolean = false;
+  audioArray: any;
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  @Output() playEvent = new EventEmitter();
-  @Output() pauseEvent = new EventEmitter();
+  // @Output() playEvent = new EventEmitter();
+  // @Output() pauseEvent = new EventEmitter();
 
   onScroll($event) {
     if ($event && $event.detail && $event.detail.scrollTop) {
@@ -39,9 +43,14 @@ export class PrayerPage implements OnInit {
   favArray: any = [];
   existingList: any = [];
   audioList: any = [];
-
-  //Access audio player dom
-  @ViewChild('audioPlayer', { static: false }) audioPlayer: ElementRef;
+  msaapDisplayTitle = true;
+  msaapDisplayPlayList = false;
+  msaapPageSizeOptions = [2, 4, 6];
+  msaapDisplayVolumeControls = true;
+  msaapDisplayRepeatControls = true;
+  msaapDisplayArtist = false;
+  msaapDisplayDuration = false;
+  msaapDisablePositionSlider = false;
 
   topiclist = [
     {
@@ -54,7 +63,10 @@ export class PrayerPage implements OnInit {
       desc: 'Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go./” Joshua 1:9',
       audio: [
         {
-          url: 'assets/audio/discouraged.mp3',
+          id: 1,
+          title: 'Discouraged',
+          duration: '01:20',
+          link: 'assets/audio/discouraged.mp3',
         },
       ],
     },
@@ -68,7 +80,10 @@ export class PrayerPage implements OnInit {
       desc: 'Instead of worrying, pray... before you know it, a sense of God’s wholeness, everything coming together for good, will come and settle you down. Philippians 4:6',
       audio: [
         {
-          url: 'assets/audio/worried.mp3',
+          id: 1,
+          title: 'Worried',
+          link: 'assets/audio/worried.mp3',
+          duration: '01:50',
         },
       ],
     },
@@ -82,13 +97,22 @@ export class PrayerPage implements OnInit {
       desc: 'I’ve picked you. I haven’t dropped you.’ Don’t panic. I’m with you. There’s no need to fear for I’m your God. I’ll give you strength. I’ll help you. I’ll hold you steady, keep a firm grip on you. Isaiah 41:10',
       audio: [
         {
-          url: 'assets/audio/loneliness.mp3',
+          id: 1,
+          title: 'Lonely',
+          link: 'assets/audio/loneliness.mp3',
+          duration: '00:59',
         },
         {
-          url: 'assets/audio/loneliness2.mp3',
+          id: 2,
+          title: 'Lonely 2',
+          link: 'assets/audio/loneliness2.mp3',
+          duration: '01:10',
         },
         {
-          url: 'assets/audio/loneliness3.mp3',
+          id: 3,
+          title: 'Lonely 3',
+          link: 'assets/audio/loneliness3.mp3',
+          duration: '01:17',
         },
       ],
     },
@@ -102,10 +126,16 @@ export class PrayerPage implements OnInit {
       desc: 'Is anyone crying for help? God is listening, ready to rescue you. If your heart is broken, you’ll find God right there; if you’re kicked in the gut, he’ll help you catch your breath. Psalm 34:17',
       audio: [
         {
-          url: 'assets/audio/depressed.mp3',
+          id: 1,
+          title: 'Depressed',
+          link: 'assets/audio/depressed.mp3',
+          duration: '01:29',
         },
         {
-          url: 'assets/audio/depressed2.mp3',
+          id: 2,
+          title: 'Depressed 1',
+          link: 'assets/audio/depressed2.mp3',
+          duration: '00:43',
         },
       ],
     },
@@ -119,10 +149,16 @@ export class PrayerPage implements OnInit {
       desc: 'Do not be anxious about anything, but in every situation, by prayer… present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds… Philippians 4:6',
       audio: [
         {
-          url: 'assets/audio/peace.mp3',
+          id: 1,
+          title: 'Peace',
+          link: 'assets/audio/peace.mp3',
+          duration: '01:51',
         },
         {
-          url: 'assets/audio/peace2.mp3',
+          id: 2,
+          title: 'Peace 1',
+          link: 'assets/audio/peace2.mp3',
+          duration: '01:14',
         },
       ],
     },
@@ -136,10 +172,16 @@ export class PrayerPage implements OnInit {
       desc: '“This is how much God loved the world: He gave his Son, his one and only Son…. God came to help, to put the world right again. Anyone who trusts in him is acquitted… John 3:16',
       audio: [
         {
-          url: 'assets/audio/guilty.mp3',
+          id: 1,
+          title: 'Guilt',
+          link: 'assets/audio/guilty.mp3',
+          duration: '01:33',
         },
         {
-          url: 'assets/audio/guilty2.mp3',
+          id: 2,
+          title: 'Guilt 1',
+          link: 'assets/audio/guilty2.mp3',
+          duration: '01:26',
         },
       ],
     },
@@ -153,10 +195,16 @@ export class PrayerPage implements OnInit {
       desc: 'Are you tired? Worn out? … Get away with me and you’ll recover your life. I’ll show you how to take a real rest. Walk with me … learn the unforced rhythms of grace…. keep company with me and you’ll learn to live freely and lightly.” Matthew 11:28',
       audio: [
         {
-          url: 'assets/audio/tired.mp3',
+          id: 1,
+          title: 'Tired',
+          link: 'assets/audio/tired.mp3',
+          duration: '01:26',
         },
         {
-          url: 'assets/audio/tired2.mp3',
+          id: 2,
+          title: 'Tired 1',
+          link: 'assets/audio/tired2.mp3',
+          duration: '01:10',
         },
       ],
     },
@@ -170,10 +218,16 @@ export class PrayerPage implements OnInit {
       desc: 'My parting gift to you… Peace. I don’t leave you the way you’re used to being left—feeling abandoned, bereft. So don’t be upset. Don’t be  distraught. John 14:27',
       audio: [
         {
-          url: 'assets/audio/stressed.mp3',
+          id: 1,
+          title: 'Stressed',
+          link: 'assets/audio/stressed.mp3',
+          duration: '01:52',
         },
         {
-          url: 'assets/audio/stressed2.mp3',
+          id: 2,
+          title: 'Stressed 1',
+          link: 'assets/audio/stressed2.mp3',
+          duration: '01:11',
         },
       ],
     },
@@ -187,10 +241,16 @@ export class PrayerPage implements OnInit {
       desc: 'Even though on the outside it often looks like things are falling apart on us, on the inside, where God is making new life, not a day goes by without his unfolding grace. These hard times are small potatoes compared to the coming good times, the lavish celebration prepared for us. 2 Corinthians 4:16',
       audio: [
         {
-          url: 'assets/audio/pain-physical.mp3',
+          id: 1,
+          title: 'Physical Pain',
+          link: 'assets/audio/pain-physical.mp3',
+          duration: '01:43',
         },
         {
-          url: 'assets/audio/pain-physical2.mp3',
+          id: 2,
+          title: 'Physical Pain 1',
+          link: 'assets/audio/pain-physical2.mp3',
+          duration: '01:16',
         },
       ],
     },
@@ -204,10 +264,16 @@ export class PrayerPage implements OnInit {
       desc: 'Even though on the outside it often looks like things are falling apart on us, on the inside, where God is making new life, not a day goes by without his unfolding grace. These hard times are small potatoes compared to the coming good times, the lavish celebration prepared for us. 2 Corinthians 4:16',
       audio: [
         {
-          url: 'assets/audio/pain_emotional.mp3',
+          id: 1,
+          title: 'Emotional Pain',
+          link: 'assets/audio/pain_emotional.mp3',
+          duration: '01:26',
         },
         {
-          url: 'assets/audio/pain_emotional2.mp3',
+          id: 2,
+          title: 'Emotional Pain 1',
+          link: 'assets/audio/pain_emotional2.mp3',
+          duration: '01:20',
         },
       ],
     },
@@ -221,10 +287,16 @@ export class PrayerPage implements OnInit {
       desc: '5-12 Trust God from the bottom of your heart; don’t try to figure out everything on your own. Listen for God’s voice in everything you do, everywhere you go; he’s the one who will keep you on track. Proverbs 3:5',
       audio: [
         {
-          url: 'assets/audio/confused.mp3',
+          id: 1,
+          title: 'Confused',
+          link: 'assets/audio/confused.mp3',
+          duration: '01:25',
         },
         {
-          url: 'assets/audio/confused2.mp3',
+          id: 2,
+          title: 'Confused 1',
+          link: 'assets/audio/confused2.mp3',
+          duration: '01:56',
         },
       ],
     },
@@ -238,10 +310,16 @@ export class PrayerPage implements OnInit {
       desc: 'Lead with your ears, follow up with your tongue, and let anger straggle along in the rear. God’s righteousness doesn’t grow from human anger. In simple humility, let God, landscape you with the Word, making a salvation-garden of your life. James 1:19-20',
       audio: [
         {
-          url: 'assets/audio/anger.mp3',
+          id: 1,
+          title: 'Angry',
+          link: 'assets/audio/anger.mp3',
+          duration: '02:15',
         },
         {
-          url: 'assets/audio/anger2.mp3',
+          id: 2,
+          title: 'Angry 1',
+          link: 'assets/audio/anger2.mp3',
+          duration: '01:42',
         },
       ],
     },
@@ -255,10 +333,16 @@ export class PrayerPage implements OnInit {
       desc: 'I pulled you in from all over the world, called you in from every dark corner of the earth… I’ve picked you. I haven’t dropped you. Don’t panic. I’m with you. There’s no need to fear for I’m your God. I’ll give you strength. I’ll  help you. I’ll hold you steady, keep a firm grip on you. Isaiah 41:10-12',
       audio: [
         {
-          url: 'assets/audio/afraid.mp3',
+          id: 1,
+          title: 'Afraid',
+          link: 'assets/audio/afraid.mp3',
+          duration: '01:20',
         },
         {
-          url: 'assets/audio/afraid2.mp3',
+          id: 2,
+          title: 'Afraid 1',
+          link: 'assets/audio/afraid2.mp3',
+          duration: '01:27',
         },
       ],
     },
@@ -272,7 +356,10 @@ export class PrayerPage implements OnInit {
       desc: 'God will never walk away from his people, never desert his precious people. Rest assured that justice is on its way and every good heart put right. Psalm 94:15',
       audio: [
         {
-          url: 'assets/audio/rejected.mp3',
+          id: 1,
+          title: 'Rejected',
+          link: 'assets/audio/rejected.mp3',
+          duration: '01:41',
         },
       ],
     },
@@ -286,10 +373,16 @@ export class PrayerPage implements OnInit {
       desc: 'Trust God from the bottom of your heart; don’t try to figure out everything on your own. Listen for God’s voice in everything you do, everywhere you go; he’s the one who will keep you on track. Proverbs 3:5-6',
       audio: [
         {
-          url: 'assets/audio/doubt.mp3',
+          id: 1,
+          title: 'Doubt',
+          link: 'assets/audio/doubt.mp3',
+          duration: '01:20',
         },
         {
-          url: 'assets/audio/doubt2.mp3',
+          id: 2,
+          title: 'Doubt 1',
+          link: 'assets/audio/doubt2.mp3',
+          duration: '01:44',
         },
       ],
     },
@@ -303,10 +396,16 @@ export class PrayerPage implements OnInit {
       desc: 'By your words I can see where I’m going; they throw a beam of light on my dark path. Psalm 119:105',
       audio: [
         {
-          url: 'assets/audio/guidance.mp3',
+          id: 1,
+          title: 'Guidance',
+          link: 'assets/audio/guidance.mp3',
+          duration: '02:13',
         },
         {
-          url: 'assets/audio/guidance2.mp3',
+          id: 2,
+          title: 'Guidance 1',
+          link: 'assets/audio/guidance2.mp3',
+          duration: '01:28',
         },
       ],
     },
@@ -320,7 +419,10 @@ export class PrayerPage implements OnInit {
       desc: '“If you embrace this kingdom life and don’t doubt God, you’ll not only do minor feats… but also triumph over huge obstacles. Matthew 21:21',
       audio: [
         {
-          url: 'assets/audio/faith.mp3',
+          id: 1,
+          title: 'Faith',
+          link: 'assets/audio/faith.mp3',
+          duration: '01:33',
         },
       ],
     },
@@ -334,10 +436,16 @@ export class PrayerPage implements OnInit {
       desc: '“Be strong and courageous and do the work. Do not be afraid or discouraged, for the LORD God, my God is with you. He will not fail you or forsake you…” 1 Chronicles 28:20',
       audio: [
         {
-          url: 'assets/audio/discouraged.mp3',
+          id: 1,
+          title: 'Strength',
+          link: 'assets/audio/discouraged.mp3',
+          duration: '01:20',
         },
         {
-          url: 'assets/audio/discouraged2.mp3',
+          id: 2,
+          title: 'Strength 2',
+          link: 'assets/audio/discouraged2.mp3',
+          duration: '01:20',
         },
       ],
     },
@@ -351,7 +459,10 @@ export class PrayerPage implements OnInit {
       desc: 'Pray very simply. Like this: Our Father in heaven, Reveal who you are. Set the world right… Keep us forgiven with you and forgiving others… You’re in charge! Matthew 6:9–15',
       audio: [
         {
-          url: 'assets/audio/forgiveness.mp3',
+          id: 1,
+          title: 'Forgiveness',
+          link: 'assets/audio/forgiveness.mp3',
+          duration: '01:54',
         },
       ],
     },
@@ -365,16 +476,19 @@ export class PrayerPage implements OnInit {
       desc: 'May God our Father himself and our Master Jesus clear the road to you! And may the Master pour on the love so it fills your lives and splashes over on everyone around you…! 1 Thessalonians 3:12',
       audio: [
         {
-          url: 'assets/audio/relationships.mp3',
+          id: 1,
+          title: 'Relationships',
+          link: 'assets/audio/relationships.mp3',
+          duration: '01:37',
         },
       ],
     },
   ];
 
   ngOnInit() {
-    console.log(this.playEvent);
     this.prayerid = this.activatedroute.snapshot.params['prayerid'];
     this.prayerdata = this.topiclist[this.prayerid - 1];
+    this.audioArray = this.prayerdata.audio;
     this.audioList = this.shuffle(this.topiclist[this.prayerid - 1].audio);
     this.isAudioPlaying = true;
   }
@@ -421,16 +535,5 @@ export class PrayerPage implements OnInit {
       data1.splice(index, 1);
     }
     localStorage.setItem('fav', JSON.stringify(data1));
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      var test: any = this.audioPlayer;
-      test.repeatActive = true;
-      test.audioPlayer.nativeElement.play();
-
-      console.log(test);
-      this.playEvent.emit();
-    }, 1000);
   }
 }

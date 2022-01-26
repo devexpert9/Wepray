@@ -33,7 +33,7 @@ ion-header {
   }
 }
 
-ion-content {
+ion-content.player-all {
   --background: none;
   background-image: url("../../assets/img/plbg.png");
   background-position: 0px 255px;
@@ -74,7 +74,9 @@ ion-content {
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: calc(100vh - 355px);
     padding: 45px 15px 15px 15px;
+    background-position: center bottom;
     p {
       font-size: 13px;
       color: #fff;
@@ -121,6 +123,17 @@ ion-content {
             }
           }
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .player-settings {
+    .ngx-col {
+      .ngx-d-none {
+        display: block !important;
+        overflow: hidden;
       }
     }
   }

@@ -1,3 +1,4 @@
+import { SharedService } from './../shared/services/shared.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
   showToolbar = false;
-
+  status: boolean;
   onScroll($event) {
     if ($event && $event.detail && $event.detail.scrollTop) {
       const scrollTop = $event.detail.scrollTop;
@@ -16,7 +17,11 @@ export class HomePage implements OnInit {
     }
   }
   title: string = 'How can we pray for you today ?';
-  constructor(private router: Router, private cd: ChangeDetectorRef) {}
+  constructor(
+    private router: Router,
+    private cd: ChangeDetectorRef,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit() {}
 
@@ -27,6 +32,7 @@ export class HomePage implements OnInit {
   }
 
   getData(id) {
+    this.sharedService.publishData('');
     localStorage.setItem('id', id);
     this.router.navigate(['tabs/prayer/' + id]);
   }

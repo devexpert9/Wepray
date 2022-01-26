@@ -19,7 +19,8 @@ ion-tabs {
         }
       }
     }
-    ion-tab-button.tab-selected {
+    ion-tab-button.tab-selected,
+    ion-tab-button.playertab {
       overflow: visible;
       --overflow: visible;
       content: none;
@@ -50,7 +51,7 @@ ion-tabs {
         top: 28px;
       }
     }
-    ion-tab-button.tab-selected.tab2 {
+    ion-tab-button.playertab {
       &:after {
         content: "";
         position: absolute;
@@ -61,6 +62,9 @@ ion-tabs {
         background-size: cover;
         background-position: center center;
         top: 28px;
+      }
+      span {
+        line-height: 63px;
       }
     }
   }

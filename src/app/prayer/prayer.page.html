@@ -1,48 +1,22 @@
 <ion-header [class.show-background]="showToolbar">
   <ion-toolbar>
     <ion-title class="ion-text-center">{{prayerdata?.title}}</ion-title>
-
-    <ng-container>
-      <ion-icon
-        slot="end"
-        (click)="addToFav(prayerdata.id)"
-        [ngClass]="status ? 'active' : ''"
-        name="heart"
-      ></ion-icon>
-    </ng-container>
+    <ion-icon
+      slot="end"
+      (click)="addToFav(prayerdata.id)"
+      [ngClass]="status ? 'active' : ''"
+      name="heart"
+    ></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content
-  [scrollEvents]="true"
-  (ionScroll)="onScroll($event)"
-  class="player-all"
->
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <div topWrapper>
     <h1>{{prayerdata?.quote}}</h1>
     <p>{{prayerdata?.name}}</p>
   </div>
   <div wrapper>
-    <!-- <ngx-audio-player
-      [playlist]="audioList"
-      [autoPlay]="false"
-    ></ngx-audio-player> -->
-    <div class="player-settings">
-      <ngx-audio-player
-        [playlist]="audioList"
-        [displayTitle]="msaapDisplayTitle"
-        [autoPlay]="true"
-        muted="muted"
-        [displayPlaylist]="msaapDisplayPlayList"
-        [pageSizeOptions]="msaapPageSizeOptions"
-        [displayArtist]="msaapDisplayArtist"
-        [displayDuration]="msaapDisplayDuration"
-        [expanded]="true"
-        [displayVolumeControls]="msaapDisplayVolumeControls"
-        [displayRepeatControls]="msaapDisplayRepeatControls"
-        [disablePositionSlider]="msaapDisablePositionSlider"
-      ></ngx-audio-player>
-    </div>
+    <ang-music-player #audioPlayer [audioList]="audioList"></ang-music-player>
     <p>{{prayerdata?.desc}}</p>
   </div>
 </ion-content>

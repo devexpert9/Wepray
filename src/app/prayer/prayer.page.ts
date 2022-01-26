@@ -1,15 +1,10 @@
 import {
-  ElementRef,
-  ViewChild,
-  EventEmitter,
-  Output,
   Component,
   OnInit,
   ChangeDetectorRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Track } from 'ngx-audio-player';
 
 @Component({
   selector: 'app-prayer',
@@ -22,9 +17,6 @@ export class PrayerPage implements OnInit {
   isAudioPlaying: boolean = false;
   status: boolean = false;
   audioArray: any;
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  // @Output() playEvent = new EventEmitter();
-  // @Output() pauseEvent = new EventEmitter();
 
   onScroll($event) {
     if ($event && $event.detail && $event.detail.scrollTop) {
@@ -32,7 +24,6 @@ export class PrayerPage implements OnInit {
       this.showToolbar = scrollTop >= 20;
     }
   }
-  // @ViewChild('audioPlayer', { static: true }) audioPlayer: ElementRef;
   constructor(
     private activatedroute: ActivatedRoute,
     private cd: ChangeDetectorRef

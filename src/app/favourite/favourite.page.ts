@@ -1,6 +1,4 @@
-import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { SharedService } from '../shared/services/shared.service';
 
 @Component({
   selector: 'app-favourite',
@@ -11,8 +9,6 @@ export class FavouritePage implements OnInit {
   orderstab: string = 'prayer';
   isAndroid: boolean = false;
   favList: any;
-  file: File;
-  duration: number = 0;
   showToolbar = false;
   filterFavQuotesList: any = [];
   filterFavList;
@@ -26,11 +22,7 @@ export class FavouritePage implements OnInit {
     }
   }
 
-  constructor(
-    private cd: ChangeDetectorRef,
-    private router: Router,
-    private sharedService: SharedService
-  ) {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {}
 
@@ -82,7 +74,6 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/discouraged.mp3',
-          duration: '01:20',
         },
       ],
     },
@@ -97,7 +88,6 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/worried.mp3',
-          duration: '01:50',
         },
       ],
     },
@@ -112,15 +102,6 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/loneliness.mp3',
-          duration: '00:59',
-        },
-        {
-          url: 'assets/audio/loneliness2.mp3',
-          duration: '01:10',
-        },
-        {
-          url: 'assets/audio/loneliness3.mp3',
-          duration: '01:17',
         },
       ],
     },
@@ -135,11 +116,6 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/depressed.mp3',
-          duration: '01:29',
-        },
-        {
-          url: 'assets/audio/depressed2.mp3',
-          duration: '00:43',
         },
       ],
     },
@@ -154,17 +130,12 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/peace.mp3',
-          duration: '01:51',
-        },
-        {
-          url: 'assets/audio/peace2.mp3',
-          duration: '01:14',
         },
       ],
     },
     {
       id: 6,
-      img: 'assets/img/guilt.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Guilt',
       quote:
         'God loves us too much to leave us alone to contend with the pain, guilt and loneliness of our present life.',
@@ -173,17 +144,12 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/guilty.mp3',
-          duration: '01:33',
-        },
-        {
-          url: 'assets/audio/guilty2.mp3',
-          duration: '01:26',
         },
       ],
     },
     {
       id: 7,
-      img: 'assets/img/tired.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Tired',
       quote:
         'We can be tired, weary and emotionally distraught, but after spending time alone with God, we find that He injects into our bodies energy, power and strength.',
@@ -192,17 +158,12 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/tired.mp3',
-          duration: '01:26',
-        },
-        {
-          url: 'assets/audio/tired2.mp3',
-          duration: '01:10',
         },
       ],
     },
     {
       id: 8,
-      img: 'assets/img/stressed.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Stressed',
       quote:
         "God will never give you anything you can't handle, so don't stress. Kelly ",
@@ -211,17 +172,12 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/stressed.mp3',
-          duration: '01:52',
-        },
-        {
-          url: 'assets/audio/stressed2.mp3',
-          duration: '01:11',
         },
       ],
     },
     {
       id: 9,
-      img: 'assets/img/physicalpain.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Physical Pain',
       quote:
         '“One of life’s greatest paradoxes is that it’s in the crucible of pain and suﬀering that we become tender.”',
@@ -230,17 +186,12 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/pain-physical.mp3',
-          duration: '01:43',
-        },
-        {
-          url: 'assets/audio/pain-physical2.mp3',
-          duration: '01:16',
         },
       ],
     },
     {
       id: 10,
-      img: 'assets/img/emotionalpain.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Emotional Pain',
       quote:
         '“God, who foresaw your tribulation, has specially armed you to go through it, not without pain but without stain.”',
@@ -249,17 +200,12 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/pain_emotional.mp3',
-          duration: '01:26',
-        },
-        {
-          url: 'assets/audio/pain_emotional2.mp3',
-          duration: '01:20',
         },
       ],
     },
     {
       id: 11,
-      img: 'assets/img/confused.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Confused',
       quote:
         '“God turns you from one feeling to another and teaches by means of opposites so that you will have two wings to fly, not one”',
@@ -267,18 +213,13 @@ export class FavouritePage implements OnInit {
       desc: '5-12 Trust God from the bottom of your heart; don’t try to figure out everything on your own. Listen for God’s voice in everything you do, everywhere you go; he’s the one who will keep you on track. Proverbs 3:5',
       audio: [
         {
-          url: 'assets/audio/confused.mp3',
-          duration: '01:25',
-        },
-        {
-          url: 'assets/audio/confused2.mp3',
-          duration: '01:56',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
     {
       id: 12,
-      img: 'assets/img/angry.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Angry',
       quote:
         '“Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured.”',
@@ -286,18 +227,13 @@ export class FavouritePage implements OnInit {
       desc: 'Lead with your ears, follow up with your tongue, and let anger straggle along in the rear. God’s righteousness doesn’t grow from human anger. In simple humility, let God, landscape you with the Word, making a salvation-garden of your life. James 1:19-20',
       audio: [
         {
-          url: 'assets/audio/anger.mp3',
-          duration: '02:15',
-        },
-        {
-          url: 'assets/audio/anger2.mp3',
-          duration: '01:42',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
     {
       id: 13,
-      img: 'assets/img/afraid.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Afraid',
       quote:
         '“I learned that courage was not the absence of fear, but the triumph over it. The brave person is not he who does not feel afraid, but he who conquers that fear.”',
@@ -305,18 +241,13 @@ export class FavouritePage implements OnInit {
       desc: 'I pulled you in from all over the world, called you in from every dark corner of the earth… I’ve picked you. I haven’t dropped you. Don’t panic. I’m with you. There’s no need to fear for I’m your God. I’ll give you strength. I’ll  help you. I’ll hold you steady, keep a firm grip on you. Isaiah 41:10-12',
       audio: [
         {
-          url: 'assets/audio/afraid.mp3',
-          duration: '01:20',
-        },
-        {
-          url: 'assets/audio/afraid2.mp3',
-          duration: '01:27',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
     {
       id: 14,
-      img: 'assets/img/rejected.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Rejected',
       quote:
         '“A rejection is nothing more than a necessary step in the pursuit of success.”',
@@ -324,14 +255,13 @@ export class FavouritePage implements OnInit {
       desc: 'God will never walk away from his people, never desert his precious people. Rest assured that justice is on its way and every good heart put right. Psalm 94:15',
       audio: [
         {
-          url: 'assets/audio/rejected.mp3',
-          duration: '01:41',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
     {
       id: 15,
-      img: 'assets/img/doubt.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Doubt',
       quote:
         '“Our doubts are traitors, and make us  lose the good we oft might win, by fearing to attempt.”',
@@ -339,18 +269,13 @@ export class FavouritePage implements OnInit {
       desc: 'Trust God from the bottom of your heart; don’t try to figure out everything on your own. Listen for God’s voice in everything you do, everywhere you go; he’s the one who will keep you on track. Proverbs 3:5-6',
       audio: [
         {
-          url: 'assets/audio/doubt.mp3',
-          duration: '01:20',
-        },
-        {
-          url: 'assets/audio/doubt2.mp3',
-          duration: '01:44',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
     {
       id: 16,
-      img: 'assets/img/guidance.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Guidance',
       quote:
         "“When God takes out the trash, don't go digging back through it. Trust Him.”",
@@ -358,18 +283,13 @@ export class FavouritePage implements OnInit {
       desc: 'By your words I can see where I’m going; they throw a beam of light on my dark path. Psalm 119:105',
       audio: [
         {
-          url: 'assets/audio/guidance.mp3',
-          duration: '02:13',
-        },
-        {
-          url: 'assets/audio/guidance2.mp3',
-          duration: '01:28',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
     {
       id: 17,
-      img: 'assets/img/faith.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Faith',
       quote:
         '“Keep the faith. The vision is always for the appointed time. Be patient, prayerful and wait for the fulfillment of your visions.”',
@@ -377,14 +297,13 @@ export class FavouritePage implements OnInit {
       desc: '“If you embrace this kingdom life and don’t doubt God, you’ll not only do minor feats… but also triumph over huge obstacles. Matthew 21:21',
       audio: [
         {
-          url: 'assets/audio/faith.mp3',
-          duration: '01:33',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
     {
       id: 18,
-      img: 'assets/img/strength.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Strength',
       quote:
         'You are stronger than you think, because the power of Almighty God is available to you. Your strength is renewed when you trust in Him. ',
@@ -393,17 +312,12 @@ export class FavouritePage implements OnInit {
       audio: [
         {
           url: 'assets/audio/discouraged.mp3',
-          duration: '01:20',
-        },
-        {
-          url: 'assets/audio/discouraged2.mp3',
-          duration: '01:20',
         },
       ],
     },
     {
       id: 19,
-      img: 'assets/img/forgiveness.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Forgiveness',
       quote:
         'Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.',
@@ -411,14 +325,13 @@ export class FavouritePage implements OnInit {
       desc: 'Pray very simply. Like this: Our Father in heaven, Reveal who you are. Set the world right… Keep us forgiven with you and forgiving others… You’re in charge! Matthew 6:9–15',
       audio: [
         {
-          url: 'assets/audio/forgiveness.mp3',
-          duration: '01:54',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
     {
       id: 20,
-      img: 'assets/img/relationships.svg',
+      img: 'assets/img/icon5.svg',
       title: 'Relationships',
       quote:
         '“The most painful thing is losing yourself in the process of loving someone too much, and forgetting that you are special too.”',
@@ -426,8 +339,7 @@ export class FavouritePage implements OnInit {
       desc: 'May God our Father himself and our Master Jesus clear the road to you! And may the Master pour on the love so it fills your lives and splashes over on everyone around you…! 1 Thessalonians 3:12',
       audio: [
         {
-          url: 'assets/audio/relationships.mp3',
-          duration: '01:37',
+          url: 'assets/audio/discouraged.mp3',
         },
       ],
     },
@@ -436,7 +348,7 @@ export class FavouritePage implements OnInit {
   favquotes = [
     {
       id: 1,
-      img: 'assets/img/Discouraged.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Discouraged',
       quote:
         'Suﬀering, failure, loneliness, sorrow, discouragement, and death will be part of your journey, but the Kingdom of God will conquer all these horrors. No evil can resist grace forever. ',
@@ -444,7 +356,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 2,
-      img: 'assets/img/Worried.jpg',
+      img: 'assets/img/qoutes1.jpg',
       title: 'Worried',
       quote:
         'Worry does not empty tomorrow of its sorrow. It empties today of its strength. ',
@@ -452,7 +364,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 3,
-      img: 'assets/img/Lonely.jpg',
+      img: 'assets/img/qoutes2.jpg',
       title: 'Lonely',
       quote:
         'Look for yourself, and you will find in the long run only hatred, loneliness, despair, rage, ruin, and decay. But look for Christ, and you will find Him, and with Him everything else thrown in. ',
@@ -460,7 +372,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 4,
-      img: 'assets/img/Depressed.jpg',
+      img: 'assets/img/qoutes3.jpg',
       title: 'Depressed',
       quote:
         '"Character cannot be developed in ease and quiet. Only through experience of trial and suﬀering can the soul be strengthened, ambition inspired, and success achieved." ',
@@ -468,7 +380,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 5,
-      img: 'assets/img/Peace.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Peace',
       quote:
         'God cannot give us a happiness and peace apart from Himself, because it is not there. There is no such thing.',
@@ -476,7 +388,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 6,
-      img: 'assets/img/Guilt.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Guilt',
       quote:
         'God loves us too much to leave us alone to contend with the pain, guilt and loneliness of our present life.',
@@ -484,7 +396,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 7,
-      img: 'assets/img/Tired.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Tired',
       quote:
         'We can be tired, weary and emotionally distraught, but after spending time alone with God, we find that He injects into our bodies energy, power and strength.',
@@ -492,7 +404,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 8,
-      img: 'assets/img/Stressed.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Stressed',
       quote:
         "God will never give you anything you can't handle, so don't stress. Kelly ",
@@ -500,7 +412,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 9,
-      img: 'assets/img/Physical-Pain.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Physical Pain',
       quote:
         '“One of life’s greatest paradoxes is that it’s in the crucible of pain and suﬀering that we become tender.”',
@@ -508,7 +420,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 10,
-      img: 'assets/img/Emotional-Pain.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Emotional Pain',
       quote:
         '“God, who foresaw your tribulation, has specially armed you to go through it, not without pain but without stain.”',
@@ -516,7 +428,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 11,
-      img: 'assets/img/Confused.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Confused',
       quote:
         '“God turns you from one feeling to another and teaches by means of opposites so that you will have two wings to fly, not one”',
@@ -524,7 +436,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 12,
-      img: 'assets/img/Angry.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Angry',
       quote:
         '“Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured.”',
@@ -532,7 +444,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 13,
-      img: 'assets/img/Afraid.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Afraid',
       quote:
         '“I learned that courage was not the absence of fear, but the triumph over it. The brave person is not he who does not feel afraid, but he who conquers that fear.”',
@@ -540,7 +452,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 14,
-      img: 'assets/img/Rejected.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Rejected',
       quote:
         '“A rejection is nothing more than a necessary step in the pursuit of success.”',
@@ -548,7 +460,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 15,
-      img: 'assets/img/Doubt.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Doubt',
       quote:
         '“Our doubts are traitors, and make us  lose the good we oft might win, by fearing to attempt.”',
@@ -556,7 +468,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 16,
-      img: 'assets/img/Guidance.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Guidance',
       quote:
         "“When God takes out the trash, don't go digging back through it. Trust Him.”",
@@ -564,7 +476,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 17,
-      img: 'assets/img/Faith.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Faith',
       quote:
         '“Keep the faith. The vision is always for the appointed time. Be patient, prayerful and wait for the fulfillment of your visions.”',
@@ -572,7 +484,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 18,
-      img: 'assets/img/Strength.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Strength',
       quote:
         'You are stronger than you think, because the power of Almighty God is available to you. Your strength is renewed when you trust in Him. ',
@@ -580,7 +492,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 19,
-      img: 'assets/img/Forgiveness.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Forgiveness',
       quote:
         'Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.',
@@ -588,7 +500,7 @@ export class FavouritePage implements OnInit {
     },
     {
       id: 20,
-      img: 'assets/img/Realtionships.jpg',
+      img: 'assets/img/qoutes.jpg',
       title: 'Relationships',
       quote:
         '“The most painful thing is losing yourself in the process of loving someone too much, and forgetting that you are special too.”',
@@ -640,11 +552,5 @@ export class FavouritePage implements OnInit {
         localStorage.setItem('fav', JSON.stringify(this.favList));
       }
     }
-  }
-
-  onPlay(id: any) {
-    this.sharedService.publishData('');
-    localStorage.setItem('id', id);
-    this.router.navigateByUrl('/tabs/prayer/' + id);
   }
 }

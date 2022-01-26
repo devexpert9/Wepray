@@ -1,4 +1,4 @@
-<ion-header class="headr-n">
+<ion-header>
   <ion-toolbar>
     <ion-title class="ion-text-center">Quotes</ion-title>
   </ion-toolbar>
@@ -12,7 +12,7 @@
       *ngFor="let qlist of topiclist; index as i"
       class="ion-no-padding"
     >
-      <ion-avatar (click)="sendData(qlist.id)">
+      <ion-avatar>
         <img src="{{qlist?.img}}" />
         <!-- <span> </span> -->
       </ion-avatar>

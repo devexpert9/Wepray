@@ -28,8 +28,7 @@ ion-tabs ion-tab-bar ion-tab-button.tab-selected {
   z-index: 0;
   --color-selected: transparent;
 }
-ion-tabs ion-tab-bar ion-tab-button.tab-selected span,
-ion-tabs ion-tab-bar ion-tab-button.tab2.playertab span {
+ion-tabs ion-tab-bar ion-tab-button.tab-selected span {
   width: 52px;
   height: 52px !important;
   border-radius: 50%;
@@ -46,7 +45,7 @@ ion-tabs ion-tab-bar ion-tab-button.tab-selected:after {
   background-position: center center;
   top: 28px;
 }
-ion-tabs ion-tab-bar ion-tab-button.tab2.playertab:after {
+ion-tabs ion-tab-bar ion-tab-button.tab-selected.tab2:after {
   content: "";
   position: absolute;
   left: 0;

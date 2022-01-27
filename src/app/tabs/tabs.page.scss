@@ -51,7 +51,9 @@ ion-tabs {
         top: -2px;
         width: 68px;
         margin: 0 auto;
-        background: #fff;
+        background: url(../../assets/img/tabicon2.png);
+        background-size: cover;
+        background-position: center center;
         border-radius: 50%;
       }
     }
@@ -63,12 +65,12 @@ ion-tabs {
         right: 0;
         /* background: url(foot.png); */
         height: 68px;
-        /* background-size: cover; */
-        /* background-position: center center; */
         top: -2px;
         width: 68px;
         margin: 0 auto;
-        background: #100711;
+        background: url(../../assets/img/tabicon.png);
+        background-size: cover;
+        background-position: center center;
         border-radius: 50%;
       }
       span {

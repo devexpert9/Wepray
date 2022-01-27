@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class QuotesPage implements OnInit {
   showToolbar = false;
   status: boolean = false;
+
   onScroll($event) {
     if ($event && $event.detail && $event.detail.scrollTop) {
       const scrollTop = $event.detail.scrollTop;

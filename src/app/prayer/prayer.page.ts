@@ -491,15 +491,11 @@ export class PrayerPage implements OnInit {
   }
 
   shuffle(array) {
-    if (localStorage.getItem('id') == this.prayerid) {
-      if (array.length == 2) {
-        var b = array[0];
-        array[0] = array[1];
-        array[1] = b;
-        return array;
-      } else {
-        return array;
-      }
+    if (array.length == 2) {
+      var b = array[0];
+      array[0] = array[1];
+      array[1] = b;
+      return array;
     } else {
       let currentIndex = array.length,
         randomIndex;

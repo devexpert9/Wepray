@@ -491,11 +491,15 @@ export class PrayerPage implements OnInit {
   }
 
   shuffle(array) {
-    if (array.length == 2) {
-      var b = array[0];
-      array[0] = array[1];
-      array[1] = b;
-      return array;
+    if (localStorage.getItem('id') == this.prayerid) {
+      if (array.length == 2) {
+        var b = array[0];
+        array[0] = array[1];
+        array[1] = b;
+        return array;
+      } else {
+        return array;
+      }
     } else {
       let currentIndex = array.length,
         randomIndex;
@@ -514,13 +518,8 @@ export class PrayerPage implements OnInit {
   // Used like so
 
   ionViewWillEnter() {
-    if (localStorage.getItem('id') == this.prayerid) {
-      this.audioList = this.shuffle(this.topiclist[this.prayerid - 1].audio);
-    } else {
-      this.audioList = this.shuffle(this.topiclist[this.prayerid - 1].audio);
-      this.player.play();
-    }
-
+    this.audioList = this.shuffle(this.topiclist[this.prayerid - 1].audio);
+    this.player.play();
     var data = JSON.parse(localStorage.getItem('fav'));
     if (data == null || data == '') {
       data = [];

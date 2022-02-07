@@ -514,8 +514,13 @@ export class PrayerPage implements OnInit {
   // Used like so
 
   ionViewWillEnter() {
-    this.audioList = this.shuffle(this.topiclist[this.prayerid - 1].audio);
-    this.player.play();
+    if (localStorage.getItem('id') == this.prayerid) {
+      this.audioList = this.shuffle(this.topiclist[this.prayerid - 1].audio);
+    } else {
+      this.audioList = this.shuffle(this.topiclist[this.prayerid - 1].audio);
+      this.player.play();
+    }
+
     var data = JSON.parse(localStorage.getItem('fav'));
     if (data == null || data == '') {
       data = [];
